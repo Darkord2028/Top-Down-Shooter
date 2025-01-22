@@ -1,0 +1,204 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\items\\weaponscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\items\\weaponscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\world managers\\worldobjectpoolmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\world managers\\worldobjectpoolmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|e:\\bleach\\unity projects\\top down shooter\\assets\\scripts\\player\\playerequipmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerequipmentmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\player\\playerstates\\sub states\\playerlocomotionstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerstates\\sub states\\playerlocomotionstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\utility\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\utility\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\player\\playerinputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerinputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\player\\playerstates\\super states\\playergroundedstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerstates\\super states\\playergroundedstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\items\\itemscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\items\\itemscriptableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\player\\playerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|E:\\Bleach\\Unity Projects\\Top Down Shooter\\assets\\scripts\\player\\playerstates\\super states\\playerabilitystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F948D9E2-CBAA-268D-E616-F384CF425487}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerstates\\super states\\playerabilitystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Player.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Player.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\Player.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\Player.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T14:10:21.69Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerInputManager.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerInputManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerInputManager.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerInputManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerInputManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T14:40:00.465Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerEquipmentManager.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerEquipmentManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerEquipmentManager.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerEquipmentManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerEquipmentManager.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAiwDQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T20:59:50.148Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Utilities.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Utility\\Utilities.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Utility\\Utilities.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Utility\\Utilities.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Utility\\Utilities.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T10:29:47.646Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeaponScriptableObject.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Items\\WeaponScriptableObject.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\WeaponScriptableObject.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Items\\WeaponScriptableObject.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Items\\WeaponScriptableObject.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAwGgAAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T20:48:11.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WorldObjectPoolManager.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\World Managers\\WorldObjectPoolManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\World Managers\\WorldObjectPoolManager.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\World Managers\\WorldObjectPoolManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\World Managers\\WorldObjectPoolManager.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwCEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T07:32:11.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ItemScriptableObject.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Items\\ItemScriptableObject.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\ItemScriptableObject.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Items\\ItemScriptableObject.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Items\\ItemScriptableObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T20:48:08.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PlayerData.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerData.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T14:09:44.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerLocomotionState.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerStates\\Sub States\\PlayerLocomotionState.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerStates\\Sub States\\PlayerLocomotionState.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerStates\\Sub States\\PlayerLocomotionState.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerStates\\Sub States\\PlayerLocomotionState.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAkwCsAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T14:32:33.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PlayerAbilityState.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerAbilityState.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerAbilityState.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerAbilityState.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerAbilityState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T14:30:46.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PlayerGroundedState.cs",
+              "DocumentMoniker": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerGroundedState.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerGroundedState.cs",
+              "ToolTip": "E:\\Bleach\\Unity Projects\\Top Down Shooter\\Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerGroundedState.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerStates\\Super States\\PlayerGroundedState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T14:28:56.44Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
