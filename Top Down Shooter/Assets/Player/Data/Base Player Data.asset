@@ -18,6 +18,10 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  moveSpeed: 5
+  moveSpeed: 6
   sprintSpeed: 8
-  movementRotation: 5
+  movementRotation: 15
+  gunCheckRadius: 2
+  gunCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

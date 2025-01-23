@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     //Different States
     public PlayerLocomotionState LocomotionState { get; private set; }
+    public PlayerWeaponEquipState WeaponEquipState { get; private set; }
 
     #endregion
 
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
 
     [Header("Player Checks")]
     [SerializeField] Transform groundCheck;
+    [SerializeField] Transform gunCheck;
 
     #endregion
 
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
         StateMachine = new PlayerStateMachine();
 
         LocomotionState = new PlayerLocomotionState(this, StateMachine, playerData, "move");
+        WeaponEquipState = new PlayerWeaponEquipState(this, StateMachine, playerData, "equipWeapon");
     }
 
     //Get component reference in Start and Initializing starting state
@@ -66,7 +69,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         StateMachine.CurrentState.LogicUpdate();
-        //HandleGravity();
     }
 
     private void FixedUpdate()
@@ -168,6 +170,36 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    public PickUpWeaponItem GetWeaponOnCollision()
+    {
+        Collider[] hitColliders = new Collider[10];
+
+        Physics.OverlapSphereNonAlloc(gunCheck.transform.position, playerData.gunCheckRadius, hitColliders, playerData.gunCheckLayerMask);
+
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider == null)
+            {
+                WorldUIManager.instance.SetPickUpWeaponUI(null);
+                return null;
+            }
+
+            if (collider.TryGetComponent<PickUpWeaponItem>(out PickUpWeaponItem pickUpWeaponItem))
+            {
+                WorldUIManager.instance.SetPickUpWeaponUI(pickUpWeaponItem.LeftHandPickUpWeapon);
+                return pickUpWeaponItem;
+            }
+            else
+            {
+                WorldUIManager.instance.SetPickUpWeaponUI(null);
+                return null;
+            }
+        }
+
+        return null;
+
+    }
+
     #endregion
 
     #region Gizmos
@@ -175,6 +207,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(groundCheck.position, playerData.groundCheckRadius);
+        Gizmos.DrawWireSphere(gunCheck.position, playerData.gunCheckRadius);
     }
 
     #endregion

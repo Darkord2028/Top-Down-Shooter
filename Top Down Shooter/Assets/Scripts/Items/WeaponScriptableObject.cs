@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Net;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -14,6 +15,15 @@ public class WeaponScriptableObject : ItemScriptableObject
     [Header("Weapon Information")]
     public bool isRightHandedWeapon;
     public bool isHitscanWeapon;
+
+    #endregion
+
+    #region Weapon IK
+
+    [Header("Weapon IK Transform")]
+    public Vector3 HandPosition;
+    public Quaternion HandRotation;
+
 
     #endregion
 
@@ -77,6 +87,9 @@ public class WeaponScriptableObject : ItemScriptableObject
 
     public void Shoot()
     {
+        shootParticleSystem.Play();
+        PlayShootAudio(shootAudioSource, shootAudioClip);
+
         for (int i = 0; i < bulletsPerShot; i++)
         {
             Vector3 spreadAmount = GetSpread();
@@ -119,11 +132,33 @@ public class WeaponScriptableObject : ItemScriptableObject
 
         instance.transform.position = EndPoint;
 
+        if (hit.collider != null)
+        {
+            HandleBulletImpact(distance, EndPoint, hit.normal, hit.collider);
+        }
+
         yield return new WaitForSeconds(trailDuration);
         yield return null;
         instance.emitting = false;
         instance.gameObject.SetActive(false);
         WorldObjectPoolManager.instance.bulletTrailPool.Release(instance);
+    }
+
+    #endregion
+
+    #region Damage Functions
+
+    private void HandleBulletImpact(float DistanceTraveled, Vector3 HitLocation, Vector3 HitNormal, Collider HitCollider)
+    {
+        if (HitCollider.TryGetComponent<IDamageable>(out IDamageable damageable))
+        {
+            damageable.TakeDamage(GetDamage(DistanceTraveled));
+        }
+    }
+
+    public int GetDamage(float Distance = 0)
+    {
+        return Mathf.CeilToInt(damageCurve.Evaluate(Distance, Random.value));
     }
 
     #endregion

@@ -7,6 +7,8 @@ public class PlayerInputManager : MonoBehaviour
 
     public Vector2 MovementInput { get; private set; }
     public float moveAmount { get; private set; }
+    public bool EquipRightHandWeaponInput { get; private set; }
+    public bool EquipLeftHandWeaponInput { get; private set; }
 
     #endregion
 
@@ -25,6 +27,16 @@ public class PlayerInputManager : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         MovementInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnEquipRightHandWeapon(InputAction.CallbackContext context)
+    {
+        if(context.started) EquipRightHandWeaponInput = true;
+    }
+
+    public void OnEquipLeftHandWeapon(InputAction.CallbackContext context)
+    {
+        if (context.started) EquipLeftHandWeaponInput = true;
     }
 
     #endregion
@@ -47,6 +59,13 @@ public class PlayerInputManager : MonoBehaviour
             moveAmount = 1f;
         }
     }
+
+    #endregion
+
+    #region Use Input Function
+
+    public void UseEquipRightHandWeaponInput() => EquipRightHandWeaponInput = false;
+    public void UseEquipLeftHandWeaponInput() => EquipLeftHandWeaponInput = false;
 
     #endregion
 

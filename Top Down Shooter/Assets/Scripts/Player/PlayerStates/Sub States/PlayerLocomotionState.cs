@@ -40,8 +40,8 @@ public class PlayerLocomotionState : PlayerGroundedState
         player.SetMovement(playerData.moveSpeed);
         player.animator.SetFloat("moveY", moveAmount);
 
-        //player.EquipmentManager.Shoot(player.EquipmentManager.rightHandWeapon, true);
-        //player.EquipmentManager.Shoot(player.EquipmentManager.leftHandWeapon, false);
+        player.EquipmentManager.ShootRightWeapon();
+        player.EquipmentManager.ShootLeftWeapon();
     }
 
     public override void PhysicsUpdate()

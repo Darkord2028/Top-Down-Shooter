@@ -11,7 +11,10 @@ public class PlayerData : ScriptableObject
 
     [Header("Locomotion State")]
     public float moveSpeed;
-    public float sprintSpeed;
     public float movementRotation;
+
+    [Header("Player Gun Check")]
+    public float gunCheckRadius;
+    public LayerMask gunCheckLayerMask;
 
 }

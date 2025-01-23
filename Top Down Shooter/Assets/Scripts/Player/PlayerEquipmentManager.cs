@@ -2,6 +2,7 @@ using System.Collections;
 using System.Runtime.ExceptionServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 
 public class PlayerEquipmentManager : MonoBehaviour
@@ -17,7 +18,9 @@ public class PlayerEquipmentManager : MonoBehaviour
 
     [Header("Hand IK")]
     [SerializeField] TwoBoneIKConstraint rightHandIK;
+    [SerializeField] Transform rightHandIKTarget;
     [SerializeField] TwoBoneIKConstraint leftHandIK;
+    [SerializeField] Transform leftHandIKTarget;
     private RigBuilder rigBuilder;
 
     [Header("Weapon Loader Slot")]
@@ -30,9 +33,6 @@ public class PlayerEquipmentManager : MonoBehaviour
     private AudioSource rightHandWeaponAudioSource;
     private AudioSource leftHandWeaponAudioSource;
 
-    private bool isRightHandEquipped;
-    private bool isLeftHandEquipped;
-
     private float rightHandLastShootTime;
     private float leftHandLastShootTime;
 
@@ -44,16 +44,8 @@ public class PlayerEquipmentManager : MonoBehaviour
         player = GetComponent<Player>();
 
         LoadWeapon(rightHandWeapon);
-        rightHandWeapon.Initialize(player, rightHandWeaponParticleSystem, rightHandWeaponAudioSource);
-
         LoadWeapon(leftHandWeapon);
-        leftHandWeapon.Initialize(player, leftHandWeaponParticleSystem, leftHandWeaponAudioSource);
-    }
-
-    private void Update()
-    {
-        ShootRightWeapon();
-        ShootLeftWeapon();
+        rigBuilder.Build();
     }
 
     #endregion
@@ -64,43 +56,48 @@ public class PlayerEquipmentManager : MonoBehaviour
     /// It instantiates the weapon model as well as assign currentWeaponModel and HandIK target for player to hold the weapon.
     /// </summary>
     /// <param name="weapon"></param>
-    private void LoadWeapon(WeaponScriptableObject weapon)
+    public void LoadWeapon(WeaponScriptableObject weapon)
     {
-
-        if (!isRightHandEquipped)
+        if (weapon.isRightHandedWeapon)
         {
             if (currentRightHandWeaponModel != null)
             {
+                WorldUIManager.instance.SetWeaponDefaultSprite(true);
                 UnloadAndDestroyWeapon(currentRightHandWeaponModel);
             }
 
+            rightHandWeapon = weapon;
+            WorldUIManager.instance.SetWeaponSprite(weapon);
+
             currentRightHandWeaponModel = Instantiate(rightHandWeapon.itemModel);
-            currentRightHandWeaponModel.transform.SetParent(rightHandLoaderSlot.transform, true);
+            currentRightHandWeaponModel.transform.SetParent(rightHandLoaderSlot.transform, false);
             currentRightHandWeaponModel.transform.position = rightHandLoaderSlot.position;
-            AssignHandIK(currentRightHandWeaponModel.GetComponentInChildren<RightHandIKTarget>());
+
             rightHandWeaponParticleSystem = currentRightHandWeaponModel.GetComponentInChildren<ParticleSystem>();
             rightHandWeaponAudioSource = currentRightHandWeaponModel.GetComponentInChildren<AudioSource>();
-            isRightHandEquipped = true;
+            rightHandWeapon.Initialize(player, rightHandWeaponParticleSystem, rightHandWeaponAudioSource);
         }
-        else if (!isLeftHandEquipped)
+        else if (!weapon.isRightHandedWeapon)
         {
             if (currentLeftHandWeaponModel != null)
             {
+                WorldUIManager.instance.SetWeaponDefaultSprite(false);
                 UnloadAndDestroyWeapon(currentLeftHandWeaponModel);
             }
 
+            leftHandWeapon = weapon;
+            WorldUIManager.instance.SetWeaponSprite(weapon);
+            
             currentLeftHandWeaponModel = Instantiate(leftHandWeapon.itemModel);
-            currentLeftHandWeaponModel.transform.SetParent(leftHandLoaderSlot.transform, true);
+            currentLeftHandWeaponModel.transform.SetParent(leftHandLoaderSlot.transform, false);
             currentLeftHandWeaponModel.transform.position = leftHandLoaderSlot.position;
-            AssignHandIK(currentLeftHandWeaponModel.GetComponentInChildren<LeftHandIKTarget>());
+
             leftHandWeaponParticleSystem = currentLeftHandWeaponModel.GetComponentInChildren<ParticleSystem>();
             leftHandWeaponAudioSource = currentLeftHandWeaponModel.GetComponentInChildren<AudioSource>();
-            isLeftHandEquipped = true;
+            leftHandWeapon.Initialize(player, leftHandWeaponParticleSystem, leftHandWeaponAudioSource);
         }
-        else
-        {
-            Debug.LogWarning("Can not Equip weapon!");
-        }
+
+        AssignHandIK(weapon);
     }
 
     #endregion
@@ -125,16 +122,32 @@ public class PlayerEquipmentManager : MonoBehaviour
     /// </summary>
     /// <param name="rightHandIKTarget"></param>
     /// <param name="leftHandIKTarget"></param>
-    private void AssignHandIK(RightHandIKTarget rightHandIKTarget)
+    private void AssignHandIK(WeaponScriptableObject weapon)
     {
-        rightHandIK.data.target = rightHandIKTarget.transform;
-        rigBuilder.Build();
+        if (weapon.isRightHandedWeapon)
+        {
+            rightHandIKTarget.transform.localPosition = weapon.HandPosition;
+            rightHandIKTarget.transform.localRotation = weapon.HandRotation;
+        }
+        else
+        {
+            leftHandIKTarget.transform.localPosition = weapon.HandPosition;
+            leftHandIKTarget.transform.localRotation = weapon.HandRotation;
+        }
     }
 
-    private void AssignHandIK(LeftHandIKTarget leftHandIKTarget)
+    public void SetIKWeight(float weight)
     {
-        leftHandIK.data.target = leftHandIKTarget.transform;
-        rigBuilder.Build();
+        leftHandIK.weight = weight;
+        rightHandIK.weight = weight;
+    }
+
+    private void ToggleRiglayer(bool enable)
+    {
+        foreach (RigLayer rigLayer in rigBuilder.layers)
+        {
+            rigLayer.active = enable;
+        }
     }
 
     #endregion
@@ -147,10 +160,6 @@ public class PlayerEquipmentManager : MonoBehaviour
         if (Time.time > rightHandWeapon.firerate + rightHandLastShootTime)
         {
             rightHandLastShootTime = Time.time;
-
-            rightHandWeaponParticleSystem.Play();
-            PlayShootAudio(rightHandWeaponAudioSource, rightHandWeapon.shootAudioClip);
-
             rightHandWeapon.Shoot();
         }
     }
@@ -161,22 +170,18 @@ public class PlayerEquipmentManager : MonoBehaviour
         if (Time.time > leftHandWeapon.firerate + leftHandLastShootTime)
         {
             leftHandLastShootTime = Time.time;
-
-            leftHandWeaponParticleSystem.Play();
-            PlayShootAudio(leftHandWeaponAudioSource, leftHandWeapon.shootAudioClip);
-
             leftHandWeapon.Shoot();
         }
     }
 
     #endregion
 
-    #region Audio Functions
+    #region Set Functions
 
-    private void PlayShootAudio(AudioSource audioSource, AudioClip audioClip)
+    public void ToggleWeaponModel(bool enable)
     {
-        audioSource.clip = audioClip;
-        audioSource.Play();
+        currentLeftHandWeaponModel.gameObject.SetActive(enable);
+        currentRightHandWeaponModel.gameObject.SetActive(enable);
     }
 
     #endregion
