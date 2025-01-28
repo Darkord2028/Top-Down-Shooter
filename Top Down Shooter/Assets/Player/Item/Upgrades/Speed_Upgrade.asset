@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Speed_Upgrade
   m_EditorClassIdentifier: 
   upgradeType: 3
-  upgradeSprite: {fileID: 21300000, guid: dd39a91f916e31d4aa3ba3baa86a4c3f, type: 3}
+  upgradeSprite: {fileID: 21300000, guid: 7a3644e34f4317c4d8f710dc344a78df, type: 3}
   upgradeText: Increase speed by 10%

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: New_Special_Weapon
   m_EditorClassIdentifier: 
   upgradeType: 9
-  upgradeSprite: {fileID: 21300000, guid: ed9f19a55c8840644a4c963895b788ae, type: 3}
+  upgradeSprite: {fileID: 21300000, guid: f8a10ea0b12de0c478751a44efe6b200, type: 3}
   upgradeText: Get new Special Weapon.

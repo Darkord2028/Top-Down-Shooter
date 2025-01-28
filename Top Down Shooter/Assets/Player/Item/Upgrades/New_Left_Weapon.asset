@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: New_Left_Weapon
   m_EditorClassIdentifier: 
   upgradeType: 8
-  upgradeSprite: {fileID: 21300000, guid: b3e98ee59a2f94c44a9db9773cee8891, type: 3}
+  upgradeSprite: {fileID: 21300000, guid: c80d5903c47a5ec4f8440d48ed6f1241, type: 3}
   upgradeText: Get a new left hand weapon.

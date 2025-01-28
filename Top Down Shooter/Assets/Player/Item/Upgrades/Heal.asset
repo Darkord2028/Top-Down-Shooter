@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   upgradeType: 1
-  upgradeSprite: {fileID: 21300000, guid: 5a4758821fc5b444ca46a78effaf5b5a, type: 3}
+  upgradeSprite: {fileID: 21300000, guid: ec0a47c515779a7438e02cd26f7a2a1f, type: 3}
   upgradeText: Heal 20% health
