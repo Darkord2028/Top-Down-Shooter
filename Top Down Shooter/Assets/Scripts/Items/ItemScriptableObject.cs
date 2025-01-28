@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Base class for item in the game.
+/// It stores 3D model of the item, its sprite as well as its name
+/// </summary>
 [CreateAssetMenu(fileName = "newItemName", menuName = "Data/Items/Item")]
 public class ItemScriptableObject : ScriptableObject
 {

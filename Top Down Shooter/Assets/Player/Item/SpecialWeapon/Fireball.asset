@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cccab8de0fdd6034ab59b03a8ef66a75, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: 
+  itemName: Fireball
+  itemSprite: {fileID: 21300000, guid: 3dee5e0648b00b644b583329755da1f9, type: 3}
+  itemModel: {fileID: 5296314762742759226, guid: 21a6fdf29e4f5504db5819bfc6105285, type: 3}
+  MaxLevel: 2
+  ProjectileType: 2
+  disableOnCollision: 1
+  initialWeaponLevel: 1
+  projectile: {fileID: 8129182215156545568, guid: e0f3b3f66bd635d4c8ce104d40d59ed4, type: 3}
+  firerate: 5
+  projectileSpawnForce: 50
+  shootSpread: {x: 0, y: 0, z: 0}
+  damageCurve:
+    m_Mode: 3
+    m_CurveMultiplier: 0
+    m_CurveMin:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_CurveMax:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ConstantMin: 15
+    m_ConstantMax: 20
+  firepoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

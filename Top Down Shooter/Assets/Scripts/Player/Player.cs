@@ -1,26 +1,38 @@
 using UnityEngine;
 
+/// <summary>
+/// This is the base script that runs the updates loop as well as manages and 
+/// stores the references of states.
+/// </summary>
 public class Player : MonoBehaviour
 {
     #region State Variables
 
-    //State Machine
+    //Creating state machines
     public PlayerStateMachine StateMachine { get; private set; }
 
-    //Different States
+    //Creating different states
     public PlayerLocomotionState LocomotionState { get; private set; }
     public PlayerWeaponEquipState WeaponEquipState { get; private set; }
+    public PlayerDodgeState DodgeState { get; private set; }
 
     #endregion
 
     #region Public Get - Private Set Variables
 
+    //Different components attached to the player
     public Animator animator { get; private set; }
     public CharacterController characterController { get; private set; }
     public PlayerInputManager InputManager { get; private set; }
     public PlayerEquipmentManager EquipmentManager { get; private set; }
+    public Health PlayerHealth { get; private set; }
+    public PlayerUpgrade PlayerUpgrade { get; private set; }
 
     public Vector2 playerVelocity;
+
+    public int MaxAbilityToGainUpgradePoint { get; private set; }
+    public int CurrentAbility { get; private set; }
+    public int CurrentLevel { get; private set; }
 
     #endregion
 
@@ -30,7 +42,7 @@ public class Player : MonoBehaviour
     public bool debugAnimationBoolName;
 
     [Header("Player Data")]
-    [SerializeField] PlayerData playerData;
+    public PlayerData playerData;
 
     [Header("Player Camera")]
     [SerializeField] Transform playerCamera;
@@ -50,6 +62,7 @@ public class Player : MonoBehaviour
 
         LocomotionState = new PlayerLocomotionState(this, StateMachine, playerData, "move");
         WeaponEquipState = new PlayerWeaponEquipState(this, StateMachine, playerData, "equipWeapon");
+        DodgeState = new PlayerDodgeState(this, StateMachine, playerData, "dodge");
     }
 
     //Get component reference in Start and Initializing starting state
@@ -60,17 +73,38 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         InputManager = GetComponent<PlayerInputManager>();
         EquipmentManager = GetComponent<PlayerEquipmentManager>();
+        PlayerHealth = GetComponent<Health>();
+        PlayerUpgrade = GetComponent<PlayerUpgrade>();
+
+        //Initializing the player health UI as well as hooking up event to DamagePlayerHealth function
+        WorldUIManager.instance.InitializePlayerHealth(PlayerHealth._MaxHealth, PlayerHealth._Health);
+        PlayerHealth.OnTakeDamage += WorldUIManager.instance.DamagePlayerHealth;
+
+        MaxAbilityToGainUpgradePoint = playerData.InitialMaxAbilityPoint;
+        WorldUIManager.instance.InitializePlayerAbility(CurrentAbility, MaxAbilityToGainUpgradePoint, CurrentLevel);
+
+        //Hooking up death event
+        PlayerHealth.OnDeath += HandleDeath;
 
         //Initializing Current State
         StateMachine.InitializeState(LocomotionState);
         StateMachine.CurrentState.Enter();
+
+        Time.timeScale = 1.0f;
     }
 
+    //Updating the base logic of the current state.
     private void Update()
     {
         StateMachine.CurrentState.LogicUpdate();
+
+        if (WorldUIManager.instance.currentWave > 5)
+        {
+            HandleDeath(transform.position);
+        }
     }
 
+    //Updating the physics of current state
     private void FixedUpdate()
     {
         StateMachine.CurrentState.PhysicsUpdate();
@@ -133,18 +167,75 @@ public class Player : MonoBehaviour
         transform.rotation = playerRotation;
     }
 
+    /// <summary>
+    /// Setting up ability point as well as updating ability slider UI.
+    /// </summary>
+    /// <param name="abilityPoint"></param>
+    public void SetAbilityPoint(int abilityPoint)
+    {
+        CurrentAbility += abilityPoint;
+        WorldUIManager.instance.UpdatePlayerAbility(CurrentAbility);
+
+        if(CurrentAbility >= MaxAbilityToGainUpgradePoint)
+        {
+            CurrentLevel += 1;
+            CurrentAbility -= MaxAbilityToGainUpgradePoint;
+            MaxAbilityToGainUpgradePoint += Mathf.FloorToInt(MaxAbilityToGainUpgradePoint * playerData.AbilityPointMultiplier / 100f);
+            WorldUIManager.instance.InitializePlayerAbility(CurrentAbility, MaxAbilityToGainUpgradePoint, CurrentLevel);
+            PlayerUpgrade.EnableUpgradeTree();
+            Time.timeScale = 0.0f;
+        }
+        
+    }
+
+    /// <summary>
+    /// If Player health drops to zero. Save high score and set death UI
+    /// </summary>
+    /// <param name="position"></param>
+    private void HandleDeath(Vector3 position)
+    {
+        SaveManager saveManager = new SaveManager();
+        saveManager.SaveHighScore(CurrentAbility);
+        saveManager.SaveTimeInMinutes(WorldUIManager.instance.seconds);
+        saveManager.SaveTimeInSeconds(WorldUIManager.instance.minutes);
+
+        WorldUIManager.instance.SetDeathUI(false);
+        Time.timeScale = 0.0f;
+    }
+
+    /// <summary>
+    /// If current wave = 5. Set Win UI.
+    /// </summary>
+    private void HandleWin()
+    {
+        SaveManager saveManager = new SaveManager();
+        saveManager.SaveHighScore(CurrentAbility);
+        saveManager.SaveTimeInMinutes(WorldUIManager.instance.seconds);
+        saveManager.SaveTimeInSeconds(WorldUIManager.instance.minutes);
+
+        WorldUIManager.instance.SetDeathUI(true);
+        Time.timeScale = 0.0f;
+    }
+
     #endregion
 
     #region Animation Trigger Functions
 
+    //Animation triggers used that could be used during states
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 
+
+    //Animations triggers that can be used to exit out off states
     private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 
     #endregion
 
     #region Do Check Functions
 
+    /// <summary>
+    /// Checks if player is touching ground and returns bool value.
+    /// </summary>
+    /// <returns></returns>
     public bool isGrounded()
     {
         Collider[] hitColliders = new Collider[10];
@@ -170,6 +261,8 @@ public class Player : MonoBehaviour
         return false;
     }
 
+
+    //Check is player is around weapon which it can pick up.
     public PickUpWeaponItem GetWeaponOnCollision()
     {
         Collider[] hitColliders = new Collider[10];
@@ -204,6 +297,9 @@ public class Player : MonoBehaviour
 
     #region Gizmos
 
+    /// <summary>
+    /// Drawing gizmos for scene view.
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(groundCheck.position, playerData.groundCheckRadius);

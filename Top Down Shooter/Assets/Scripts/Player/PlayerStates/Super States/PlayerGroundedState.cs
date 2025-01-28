@@ -1,11 +1,15 @@
 using UnityEngine;
 
+/// <summary>
+/// Base class when player is touching ground and not using any ability
+/// </summary>
 public class PlayerGroundedState : PlayerState
 {
     protected Vector2 MovementInput;
     protected float moveAmount;
     protected bool EquipRightHandWeaponInput;
     protected bool EquipLeftHandWeaponInput;
+    protected bool DodgeInput;
 
     protected PickUpWeaponItem pickUpWeaponItem;
 
@@ -46,6 +50,7 @@ public class PlayerGroundedState : PlayerState
         moveAmount = player.InputManager.moveAmount;
         EquipRightHandWeaponInput = player.InputManager.EquipRightHandWeaponInput;
         EquipLeftHandWeaponInput = player.InputManager.EquipLeftHandWeaponInput;
+        DodgeInput = player.InputManager.DodgeInput;
 
         pickUpWeaponItem = player.GetWeaponOnCollision();
 
@@ -60,6 +65,15 @@ public class PlayerGroundedState : PlayerState
             player.InputManager.UseEquipLeftHandWeaponInput();
             player.WeaponEquipState.GetPickUpWeapon(pickUpWeaponItem, false);
             player.StateMachine.ChangeState(player.WeaponEquipState);
+        }
+        else if (DodgeInput)
+        {
+            player.InputManager.UseDodgeInput();
+
+            if (player.DodgeState.CanDodge())
+            {
+                player.StateMachine.ChangeState(player.DodgeState);
+            }
         }
         else
         {

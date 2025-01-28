@@ -19,9 +19,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   moveSpeed: 6
-  sprintSpeed: 8
   movementRotation: 15
+  dodgeSpeed: 10
+  timeBetweenDodge: 1
   gunCheckRadius: 2
   gunCheckLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  gemCheckLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  InitialMaxAbilityPoint: 38
+  AbilityPointMultiplier: 25

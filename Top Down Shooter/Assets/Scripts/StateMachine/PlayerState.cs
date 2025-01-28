@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Base player state class for each player state
+/// It contains functions that can be override in different states.
+/// </summary>
 public class PlayerState
 {
     protected Player player;

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cccab8de0fdd6034ab59b03a8ef66a75, type: 3}
+  m_Name: Slash
+  m_EditorClassIdentifier: 
+  itemName: Slash
+  itemSprite: {fileID: 21300000, guid: 5a4758821fc5b444ca46a78effaf5b5a, type: 3}
+  itemModel: {fileID: 5296314762742759226, guid: bcec23213ec599146a4bc6d0ce50bbbf, type: 3}
+  MaxLevel: 0
+  ProjectileType: 1
+  disableOnCollision: 1
+  initialWeaponLevel: 0
+  projectile: {fileID: 575827634815358407, guid: 455551e7e7511f34ebe199c0665fd34f, type: 3}
+  firerate: 4
+  projectileSpawnForce: 200
+  shootSpread: {x: 0, y: 0, z: 0}
+  damageCurve:
+    m_Mode: 3
+    m_CurveMultiplier: 0
+    m_CurveMin:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_CurveMax:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ConstantMin: 15
+    m_ConstantMax: 20
+  firepoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

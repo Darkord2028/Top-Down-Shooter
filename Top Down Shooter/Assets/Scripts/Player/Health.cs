@@ -1,12 +1,16 @@
 using UnityEngine;
 
+/// <summary>
+/// Base health class for all characters in the game
+/// </summary>
+
 [DisallowMultipleComponent]
 public class Health : MonoBehaviour, IDamageable
 {
-    [SerializeField]
-    private int _MaxHealth = 100;
-    [SerializeField]
-    private int _Health;
+    public int _MaxHealth = 100;
+    public int _Health;
+
+    public bool canDamage = true;
 
     public int CurrentHealth { get => _Health; private set => _Health = value; }
 
@@ -22,7 +26,13 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        
         int DamageTaken = Mathf.Clamp(damage, 0, CurrentHealth);
+
+        if (!canDamage)
+        {
+            DamageTaken = 0;
+        }
 
         CurrentHealth -= DamageTaken;
 
@@ -37,4 +47,19 @@ public class Health : MonoBehaviour, IDamageable
         }
 
     }
+
+    public void Heal(int HealAmount)
+    {
+        CurrentHealth += HealAmount;
+        CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
+        WorldUIManager.instance.IncreasePlayerHealth(HealAmount);
+    }
+
+    public void HealthUpgrade(int upgradeAmount)
+    {
+        MaxHealth += upgradeAmount;
+        CurrentHealth += upgradeAmount;
+        WorldUIManager.instance.InitializePlayerHealth(MaxHealth, CurrentHealth);
+    }
+
 }

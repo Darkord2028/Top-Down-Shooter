@@ -261,6 +261,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3045663974548967802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5519703371796480326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2919132082766318033}
+  m_Layer: 0
+  m_Name: SpecialWeaponSlots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2919132082766318033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519703371796480326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7906277356751370935}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7063214320495210650
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7906423793960627612, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 9198775567694029285, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -481,14 +516,23 @@ PrefabInstance:
       addedObject: {fileID: 2024635365960617654}
     - targetCorrespondingSourceObject: {fileID: 3073369179580457163, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4858124561296527489}
+    - targetCorrespondingSourceObject: {fileID: 3073369179580457163, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2981960719340862323}
     - targetCorrespondingSourceObject: {fileID: 3073369179580457163, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6167317389325978705}
     - targetCorrespondingSourceObject: {fileID: 3073369179580457163, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4858124561296527489}
+      addedObject: {fileID: 2919132082766318033}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7906423793960627612, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4176735761933578788}
+    - targetCorrespondingSourceObject: {fileID: 7906423793960627612, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5702731904903630918}
     - targetCorrespondingSourceObject: {fileID: 7906423793960627612, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4927471741853816270}
@@ -503,10 +547,10 @@ PrefabInstance:
       addedObject: {fileID: 8506606321642911877}
     - targetCorrespondingSourceObject: {fileID: 7906423793960627612, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4176735761933578788}
+      addedObject: {fileID: 5095672921705418527}
     - targetCorrespondingSourceObject: {fileID: 7906423793960627612, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5702731904903630918}
+      addedObject: {fileID: 6919606568191758049}
   m_SourcePrefab: {fileID: 100100000, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
 --- !u!4 &1741925487244852760 stripped
 Transform:
@@ -523,6 +567,47 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7906423793960627612, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}
   m_PrefabInstance: {fileID: 5124658365056146044}
   m_PrefabAsset: {fileID: 0}
+--- !u!143 &4176735761933578788
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073481540527716320}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.8
+  m_Radius: 0.26
+  m_SlopeLimit: 25
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.85, z: 0.05}
+--- !u!114 &5702731904903630918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073481540527716320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RigLayers:
+  - m_Rig: {fileID: 6195872333045798230}
+    m_Active: 1
+  m_Effectors: []
 --- !u!114 &4927471741853816270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +650,19 @@ MonoBehaviour:
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2153754852312502062}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
+        m_MethodName: OnDodgeInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -640,6 +737,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 95ec58ed-d16a-42ec-a54e-ff4a264d2e3f
     m_ActionName: 'Player/EquipLeftHandWeapon[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2153754852312502062}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
+        m_MethodName: OnPauseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7f33b923-1031-4d0b-a801-5c884d0b691d
+    m_ActionName: 'Player/Pause[/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -689,38 +802,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandWeapon: {fileID: 11400000, guid: de8be7649d500dc40ae180bdb007b919, type: 2}
   leftHandWeapon: {fileID: 11400000, guid: 452922fecc5183b4b88fd0df146ce9c6, type: 2}
+  specialWeapon:
+  - {fileID: 11400000, guid: 50ad5094d96eda34ca450f3c7e9d87ec, type: 2}
   rightHandIK: {fileID: 837538988507802518}
   rightHandIKTarget: {fileID: 5781593152167903988}
   leftHandIK: {fileID: 1605565814725055}
   leftHandIKTarget: {fileID: 464661854132319846}
   rightHandLoaderSlot: {fileID: 588774302160110987}
   leftHandLoaderSlot: {fileID: 6674408142960253269}
---- !u!143 &4176735761933578788
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3073481540527716320}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.8
-  m_Radius: 0.26
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.85, z: 0.05}
---- !u!114 &5702731904903630918
+  specialWeaponLoaderSlot: {fileID: 2919132082766318033}
+--- !u!114 &5095672921705418527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -729,13 +820,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 3073481540527716320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
+  m_Script: {fileID: 11500000, guid: b49d21a4a708b3349b4f20af0c2329e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 6195872333045798230}
-    m_Active: 1
-  m_Effectors: []
+  _MaxHealth: 50
+  _Health: 0
+  canDamage: 1
+--- !u!114 &6919606568191758049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073481540527716320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c64677283edff44ea9c4bb6d237cda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedUpgrade: 5
+  healthUpgrade: 15
+  healAmount: 30
+  leftHandWeapons:
+  - {fileID: 11400000, guid: 452922fecc5183b4b88fd0df146ce9c6, type: 2}
+  - {fileID: 11400000, guid: fba4748e43f0cb44290a5b54360d372e, type: 2}
+  rightHandWeapons:
+  - {fileID: 11400000, guid: de8be7649d500dc40ae180bdb007b919, type: 2}
+  - {fileID: 11400000, guid: 988d435cc36acf945be0a669d269333c, type: 2}
+  specialWeapons:
+  - {fileID: 11400000, guid: 50ad5094d96eda34ca450f3c7e9d87ec, type: 2}
+  upgrades:
+  - {fileID: 11400000, guid: 386a52e07e397374eaa931d31dd63447, type: 2}
+  - {fileID: 11400000, guid: 7e5613368547c8844902e144cbe67089, type: 2}
+  - {fileID: 11400000, guid: 06ec7a5b0e77ad54ca681f595be1ba03, type: 2}
+  - {fileID: 11400000, guid: 0f644b06dddeafe4b81304820bc200d3, type: 2}
+  - {fileID: 11400000, guid: 52cdc2f2ca6f9384ca8c25c96017d67c, type: 2}
+  - {fileID: 11400000, guid: 90a0c1eaccaf46647b547dfad690b7a2, type: 2}
+  - {fileID: 11400000, guid: 4c3a236f5f4bc1c468630b1b1051086d, type: 2}
+  - {fileID: 11400000, guid: e80b0cbe3e74a9a49bdf696128fa9dcc, type: 2}
 --- !u!4 &4126314759543478633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9105694368679691029, guid: c2f595e2513ed1d459fcf37843299b4f, type: 3}

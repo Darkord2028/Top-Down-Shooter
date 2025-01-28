@@ -12,9 +12,9 @@ TagManager:
   - Water
   - UI
   - PickUpItem
-  - 
-  - 
-  - 
+  - Enemy
+  - Bullet
+  - Player
   - 
   - 
   - 

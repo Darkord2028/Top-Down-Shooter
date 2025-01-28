@@ -1,7 +1,12 @@
 using UnityEngine;
 
+/// <summary>
+/// Locomotion state, that handles runs the logic of moving and rotationg the player while shooting
+/// </summary>
 public class PlayerLocomotionState : PlayerGroundedState
 {
+    public float speedUpgrade;
+
     public PlayerLocomotionState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
@@ -37,7 +42,7 @@ public class PlayerLocomotionState : PlayerGroundedState
         base.LogicUpdate();
 
         player.SetRotation(playerData.movementRotation);
-        player.SetMovement(playerData.moveSpeed);
+        player.SetMovement(playerData.moveSpeed + speedUpgrade);
         player.animator.SetFloat("moveY", moveAmount);
 
         player.EquipmentManager.ShootRightWeapon();

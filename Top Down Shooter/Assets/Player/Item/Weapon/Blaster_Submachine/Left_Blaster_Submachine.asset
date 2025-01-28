@@ -21,8 +21,8 @@ MonoBehaviour:
   HandRotation: {x: 0.5263778, y: 0.4269328, z: 0.46317598, w: 0.5710717}
   hitMask:
     serializedVersion: 2
-    m_Bits: 1
-  firerate: 0.4
+    m_Bits: 129
+  firerate: 0.6
   bulletsPerShot: 1
   shootSpread: {x: 0.03, y: 0, z: 0}
   trailMaterial: {fileID: 2100000, guid: 53112deefd3c1bf4bbcab34bf1bf1416, type: 2}
@@ -50,7 +50,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  trailDuration: 0.04
+  trailDuration: 0.01
   trailMinVertexDistance: 0.1
   trailColor:
     serializedVersion: 2
@@ -82,8 +82,8 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  trailMissDistance: 100
-  simulationSpeed: 50
+  trailMissDistance: 50
+  simulationSpeed: 100
   damageCurve:
     m_Mode: 3
     m_CurveMultiplier: 0

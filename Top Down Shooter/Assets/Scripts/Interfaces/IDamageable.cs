@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Interface which handles health and appying damage to player and enemy
+/// </summary>
 public interface IDamageable
 {
     public int CurrentHealth { get; }

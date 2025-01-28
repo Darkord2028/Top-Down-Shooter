@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Base class that handles ability transition from one state to another.
+/// </summary>
 public class PlayerAbilityState : PlayerState
 {
     protected bool isAbilityDone;
@@ -18,6 +21,7 @@ public class PlayerAbilityState : PlayerState
         base.Enter();
         isAbilityDone = false;
 
+        player.EquipmentManager.SetIKWeight(0);
         player.EquipmentManager.ToggleWeaponModel(false);
     }
 
@@ -25,6 +29,7 @@ public class PlayerAbilityState : PlayerState
     {
         base.Exit();
 
+        player.EquipmentManager.SetIKWeight(1);
         player.EquipmentManager.ToggleWeaponModel(true);
     }
 
@@ -43,4 +48,17 @@ public class PlayerAbilityState : PlayerState
     {
         base.PhysicsUpdate();
     }
+
+    public bool CanDodge()
+    {
+        if(Time.time > playerData.timeBetweenDodge + startTime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

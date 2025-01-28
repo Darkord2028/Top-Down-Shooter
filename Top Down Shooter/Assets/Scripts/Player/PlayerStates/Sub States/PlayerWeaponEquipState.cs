@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Weapon Equip state is played when player picks up guns from surrounding
+/// </summary>
 public class PlayerWeaponEquipState : PlayerAbilityState
 {
     private PickUpWeaponItem pickUpWeaponItem;

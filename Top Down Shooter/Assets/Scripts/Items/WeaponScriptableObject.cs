@@ -1,14 +1,13 @@
 using System.Collections;
-using System.Net;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
+/// <summary>
+/// This scriptable object inherts from base ItemScriptableObject and extends it to become a weapon class of its own.
+/// </summary>
 [CreateAssetMenu(fileName = "newWeaponItem", menuName = "Data/Items/Weapon Item")]
 public class WeaponScriptableObject : ItemScriptableObject
 {
-    /// <summary>
-    /// This scriptable object inherts from base ItemScriptableObject and extends it to become a weapon class of its own.
-    /// </summary>
 
     #region Weapon Information
 
@@ -70,27 +69,55 @@ public class WeaponScriptableObject : ItemScriptableObject
     private ParticleSystem shootParticleSystem;
     private AudioSource shootAudioSource;
 
+    public int currentLevel { get; private set; }
+    public float upgradeFirerate { get; private set; }
+    private float upgradeMissDistance;
+    private int upgradeBulletsPerShot;
+    private int upgradeDamage;
+
     #endregion
 
     #region Initialize
 
+    /// <summary>
+    /// Initializing and storing reference for activeMonobehaviour which handles coroutines
+    /// Also setting up upgrades to 0.
+    /// </summary>
+    /// <param name="monoBehaviour"></param>
+    /// <param name="particleSystem"></param>
+    /// <param name="audioSource"></param>
     public void Initialize(MonoBehaviour monoBehaviour, ParticleSystem particleSystem, AudioSource audioSource)
     {
         activeMonobehaviour = monoBehaviour;
         shootParticleSystem = particleSystem;
         shootAudioSource = audioSource;
+
+        currentLevel = 0;
+        upgradeBulletsPerShot = 0;
+        upgradeFirerate = 0;
+        upgradeMissDistance = 0;
     }
 
     #endregion
 
     #region Shoot Functions
 
+    /// <summary>
+    /// Handles shooting as well as particle system and shoot audio.
+    /// Also handles raycasting,
+    /// </summary>
     public void Shoot()
     {
-        shootParticleSystem.Play();
-        PlayShootAudio(shootAudioSource, shootAudioClip);
+        if(shootParticleSystem != null && shootParticleSystem.gameObject.activeSelf)
+        {
+            shootParticleSystem.Play();
+        }
+        if(shootAudioSource != null && shootAudioSource.gameObject.activeSelf)
+        {
+            PlayShootAudio(shootAudioSource, shootAudioClip);
+        }
 
-        for (int i = 0; i < bulletsPerShot; i++)
+        for (int i = 0; i < bulletsPerShot + upgradeBulletsPerShot; i++)
         {
             Vector3 spreadAmount = GetSpread();
             Vector3 shootDirection;
@@ -103,11 +130,18 @@ public class WeaponScriptableObject : ItemScriptableObject
             }
             else
             {
-                activeMonobehaviour.StartCoroutine(PlayTrail(shootParticleSystem.transform.position, shootParticleSystem.transform.position + (shootDirection * trailMissDistance), new RaycastHit()));
+                activeMonobehaviour.StartCoroutine(PlayTrail(shootParticleSystem.transform.position, shootParticleSystem.transform.position + (shootDirection * (trailMissDistance + upgradeMissDistance)), new RaycastHit()));
             }
         }
     }
 
+    /// <summary>
+    /// Handles trail travel from firepoint to hit point
+    /// </summary>
+    /// <param name="StartPoint"></param>
+    /// <param name="EndPoint"></param>
+    /// <param name="hit"></param>
+    /// <returns></returns>
     private IEnumerator PlayTrail(Vector3 StartPoint, Vector3 EndPoint, RaycastHit hit)
     {
         TrailRenderer instance = WorldObjectPoolManager.instance.bulletTrailPool.Get();
@@ -148,23 +182,43 @@ public class WeaponScriptableObject : ItemScriptableObject
 
     #region Damage Functions
 
+    /// <summary>
+    /// Hadles bullet collision, such as damagine the player, gaining exp points, and showing damage text pop up
+    /// </summary>
+    /// <param name="DistanceTraveled"></param>
+    /// <param name="HitLocation"></param>
+    /// <param name="HitNormal"></param>
+    /// <param name="HitCollider"></param>
     private void HandleBulletImpact(float DistanceTraveled, Vector3 HitLocation, Vector3 HitNormal, Collider HitCollider)
     {
         if (HitCollider.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
+            Player player = activeMonobehaviour.gameObject.GetComponent<Player>();
+
+            if(player != null)
+            {
+                player.SetAbilityPoint(5);
+            }
+
+            WorldObjectPoolManager.instance.GetDamagePopUp(1f, HitLocation, GetDamage(DistanceTraveled));
             damageable.TakeDamage(GetDamage(DistanceTraveled));
         }
     }
 
     public int GetDamage(float Distance = 0)
     {
-        return Mathf.CeilToInt(damageCurve.Evaluate(Distance, Random.value));
+        return Mathf.CeilToInt(damageCurve.Evaluate(Distance, Random.value)) + upgradeDamage;
     }
 
     #endregion
 
     #region Other Functions
 
+    /// <summary>
+    /// Randomizing bullet spread while firing
+    /// </summary>
+    /// <param name="shootTime"></param>
+    /// <returns></returns>
     public Vector3 GetSpread(float shootTime = 0)
     {
         Vector3 spread = Vector3.zero;
@@ -172,6 +226,10 @@ public class WeaponScriptableObject : ItemScriptableObject
         return spread;
     }
 
+    /// <summary>
+    /// Setting up trail visuals
+    /// </summary>
+    /// <param name="trail"></param>
     public void SetTrailSettings(TrailRenderer trail)
     {
         trail.colorGradient = trailColor;
@@ -185,6 +243,11 @@ public class WeaponScriptableObject : ItemScriptableObject
 
     #region Audio Functions
 
+    /// <summary>
+    /// Function that handles playing shoot audio
+    /// </summary>
+    /// <param name="audioSource"></param>
+    /// <param name="audioClip"></param>
     private void PlayShootAudio(AudioSource audioSource, AudioClip audioClip)
     {
         audioSource.clip = audioClip;
@@ -193,4 +256,59 @@ public class WeaponScriptableObject : ItemScriptableObject
 
     #endregion
 
+    /// <summary>
+    /// Check and upgrades weapon
+    /// </summary>
+    public void UpgradeWeapon()
+    {
+        if(currentLevel <= 5)
+        {
+            currentLevel += 1;
+        }
+        
+        switch (currentLevel)
+        {
+            case 1:
+                upgradeFirerate -= 0.05f;
+                break;
+
+            case 2:
+                upgradeFirerate -= 0.05f;
+                break;
+
+            case 3:
+                upgradeMissDistance = 20;
+                break;
+
+            case 4:
+                upgradeMissDistance = 20;
+                break;
+
+            case 5:
+                upgradeDamage += 10;
+                upgradeBulletsPerShot += 1;
+                break;
+
+            case 6:
+                upgradeFirerate = 0.05f;
+                break;
+
+            case 7:
+                upgradeDamage += 10;
+                break;
+
+            case 8:
+                upgradeDamage += 10;
+                break;
+
+            case 9:
+                upgradeDamage += 10;
+                break;
+
+            case 10:
+                upgradeBulletsPerShot += 1;
+                break;
+        }
+
+    }
 }
