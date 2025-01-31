@@ -1,6 +1,8 @@
 using System.Collections;
 using TMPro;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Pool;
 
 /// <summary>
@@ -22,6 +24,7 @@ public class WorldObjectPoolManager : MonoBehaviour
     [Header("Enemy Prefabs")]
     [SerializeField] GameObject cyborgEnemyPrefab;
     [SerializeField] GameObject turretEnemyPrefab;
+    [SerializeField] GameObject zombieEnemyPrefab;
     [SerializeField] GameObject bossEnemyPrefab;
 
     [Header("Spawn References")]
@@ -33,12 +36,17 @@ public class WorldObjectPoolManager : MonoBehaviour
     [SerializeField] [Tooltip("Indexes are wave numbers while the values are spawn count")] int[] turrentSpawnCount;
     [SerializeField] [Tooltip("Indexes are wave numbers while the values are spawn count")] int[] cyborgSpawnCount;
     public int[] bossSpawnCount;
+    [SerializeField] int[] zombieSpawnCount;
+
+    [Header("Nav Mesh")]
+    [SerializeField] NavMeshSurface NavMeshSurface;
 
     //Object Pooling
     public ObjectPool<TextMeshPro> damagePopUpPool { get; private set; }
     public ObjectPool<TrailRenderer> bulletTrailPool { get; private set; }
     public ObjectPool<GameObject> cyborgEnemyPool { get; private set; }
     public ObjectPool<GameObject> turretPool { get; private set; }
+    public ObjectPool<GameObject> zombiePool { get; private set; }
     public ObjectPool<GameObject> bossPool { get; private set; }
 
     //Pool Holder
@@ -46,6 +54,7 @@ public class WorldObjectPoolManager : MonoBehaviour
     private GameObject bulletTrailHolder;
     private GameObject cyborgHolder;
     private GameObject turretHolder;
+    private GameObject zombieHolder;
     private GameObject bossHolder;
 
     private float lastSpawnTime;
@@ -75,8 +84,12 @@ public class WorldObjectPoolManager : MonoBehaviour
         cyborgEnemyPool = new ObjectPool<GameObject>(CreateBasicEnemy);
         cyborgHolder = new GameObject("Basic Enemy Pool");
 
+        zombiePool = new ObjectPool<GameObject>(CreateZombie);
+        zombieHolder = new GameObject("Zombie Holder");
+
         turretPool = new ObjectPool<GameObject>(CreateTurret);
         turretHolder = new GameObject("Turret Pool Holder");
+        turretHolder.transform.SetParent(NavMeshSurface.transform, true);
 
         bossPool = new ObjectPool<GameObject>(CreateBoss);
         bossHolder = new GameObject("Boss Pool Holder");
@@ -89,6 +102,7 @@ public class WorldObjectPoolManager : MonoBehaviour
     {
         DeployEnemies(EnemyType.Turret, 2, 10);
         DeployEnemies(EnemyType.Cyborg, 3, 5);
+        DeployEnemies(EnemyType.Zombie, 2.5f, 5);
         DropGun();
     }
 
@@ -103,6 +117,7 @@ public class WorldObjectPoolManager : MonoBehaviour
             int currentWave = WorldUIManager.instance.currentWave;
             DeployEnemies(EnemyType.Cyborg, 2, cyborgSpawnCount[currentWave]);
             DeployEnemies(EnemyType.Turret, 4, turrentSpawnCount[currentWave]);
+            DeployEnemies(EnemyType.Zombie, 5, zombieSpawnCount[currentWave]);
             DropGun();
         }
     }
@@ -131,6 +146,13 @@ public class WorldObjectPoolManager : MonoBehaviour
         trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         return trail;
+    }
+
+    private GameObject CreateZombie()
+    {
+        GameObject instance = Instantiate(zombieEnemyPrefab);
+        instance.transform.SetParent(zombieHolder.transform, false);
+        return instance;
     }
 
     private GameObject CreateBasicEnemy()
@@ -175,6 +197,7 @@ public class WorldObjectPoolManager : MonoBehaviour
             {
                 GameObject instance = enemyPool.Get();
                 CharacterController character = instance.GetComponent<CharacterController>();
+                NavMeshAgent agent = instance.GetComponent<NavMeshAgent>();
 
                 if (character)
                 {
@@ -183,12 +206,24 @@ public class WorldObjectPoolManager : MonoBehaviour
                     character.enabled = true;
                     instance.gameObject.SetActive(true);
                 }
+                else if (agent)
+                {
+                    agent.enabled = false;
+                    instance.transform.position = hit.point;
+                    agent.enabled = true;
+                    instance.SetActive(true);
+                }
                 else
                 {
                     instance.transform.position = hit.point;
                     instance.gameObject.SetActive(true);
                 }   
             }
+        }
+
+        if(enemyPool == turretPool)
+        {
+            NavMeshSurface.BuildNavMesh();
         }
     }
 
@@ -210,6 +245,10 @@ public class WorldObjectPoolManager : MonoBehaviour
 
             case EnemyType.Turret:
                 enemyPool = turretPool;
+                break;
+
+            case EnemyType.Zombie:
+                enemyPool = zombiePool;
                 break;
 
             case EnemyType.Boss:

@@ -40,5 +40,6 @@ public enum EnemyType
     None,
     Cyborg,
     Turret,
-    Boss
+    Boss,
+    Zombie
 }

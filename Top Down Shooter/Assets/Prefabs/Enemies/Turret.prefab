@@ -915,6 +915,7 @@ GameObject:
   - component: {fileID: 4476223534310457967}
   - component: {fileID: 3699399719591829233}
   - component: {fileID: 8763079504283827607}
+  - component: {fileID: -2712796390040137045}
   m_Layer: 7
   m_Name: Turret
   m_TagString: Untagged
@@ -1001,9 +1002,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMovingEnemy: 0
-  moveSpeed: 0
+  useNavMesh: 0
+  moveSpeed: 5
   rotationSpeed: 0
-  stoppingDistance: 5
+  stoppingDistance: 2
   gravity: 0
   firerate: 3
   shootSpread: {x: 0.05, y: 0, z: 0}
@@ -1092,3 +1094,23 @@ MonoBehaviour:
     m_ConstantMin: 5
     m_ConstantMax: 8
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &-2712796390040137045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8162449231203610172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 0
+  m_AffectedAgents: ffffffff

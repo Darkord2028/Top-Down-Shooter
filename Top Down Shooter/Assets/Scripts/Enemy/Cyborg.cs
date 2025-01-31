@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// Base script for enemies who shoots
@@ -7,6 +8,8 @@ using UnityEngine;
 public class Cyborg : MonoBehaviour
 {
     [SerializeField] bool isMovingEnemy;
+    [SerializeField] bool useNavMesh;
+    [SerializeField] bool canShoot;
 
     [Header("Cyborg info")]
     [SerializeField] float moveSpeed;
@@ -34,6 +37,7 @@ public class Cyborg : MonoBehaviour
 
     private Player player;
     public CharacterController characterController { get; private set; }
+    private NavMeshAgent Agent;
     private Animator animator;
 
     private float CurrentFirerate;
@@ -47,11 +51,17 @@ public class Cyborg : MonoBehaviour
     private void Start()
     {
         player = WorldObjectPoolManager.instance.player;
+        animator = GetComponent<Animator>();
 
         if (isMovingEnemy)
         {
             characterController = GetComponent<CharacterController>();
-            animator = GetComponent<Animator>();
+        }
+        if(useNavMesh)
+        {
+            Agent = GetComponent<NavMeshAgent>();
+            Agent.speed = moveSpeed;
+            Agent.stoppingDistance = stoppingDistance;
         }
     }
 
@@ -64,28 +74,35 @@ public class Cyborg : MonoBehaviour
     {
         if (isMovingEnemy)
         {
-            MoveAndRotateTowardsPlayer();
-            animator.SetFloat("moveX", characterController.velocity.x);
-
-            // Direction and distance to player
-            Vector3 direction = (player.transform.position - transform.position);
-            float distanceToPlayer = direction.magnitude;
-
-            if (characterController.velocity.magnitude < 0.4f && distanceToPlayer <= stoppingDistance + 0.1f)
+            if(useNavMesh)
             {
-                if (Time.time > firerate + CurrentFirerate)
-                {
-                    CurrentFirerate = Time.time;
-                    Shoot();
-                }
-            }
-            if (!characterController.isGrounded)
-            {
-                velocity.y += gravity * Time.deltaTime;
+                SetEnemyMovement(Agent);
+                animator.SetFloat("moveX", Agent.velocity.x);
             }
             else
             {
-                velocity.y = 0;
+                animator.SetFloat("moveX", characterController.velocity.x);
+
+                // Direction and distance to player
+                Vector3 direction = (player.transform.position - transform.position);
+                float distanceToPlayer = direction.magnitude;
+
+                if (characterController.velocity.magnitude < 0.4f && distanceToPlayer <= stoppingDistance + 0.1f)
+                {
+                    if (Time.time > firerate + CurrentFirerate)
+                    {
+                        CurrentFirerate = Time.time;
+                        Shoot();
+                    }
+                }
+                if (!characterController.isGrounded)
+                {
+                    velocity.y += gravity * Time.deltaTime;
+                }
+                else
+                {
+                    velocity.y = 0;
+                }
             }
 
         }
@@ -280,6 +297,24 @@ public class Cyborg : MonoBehaviour
 
         // Move the enemy
         characterController.Move((move + velocity) * Time.deltaTime);
+    }
+
+    #endregion
+
+    #region NavMesh Functions
+
+    private void SetEnemyMovement(NavMeshAgent agent)
+    {
+        agent.SetDestination(player.transform.position);
+
+        if(agent.velocity.magnitude < 0.2f && canShoot)
+        {
+            if (Time.time > firerate + CurrentFirerate)
+            {
+                CurrentFirerate = Time.time;
+                Shoot();
+            }
+        }
     }
 
     #endregion

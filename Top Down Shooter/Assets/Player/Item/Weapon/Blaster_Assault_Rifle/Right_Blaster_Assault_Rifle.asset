@@ -21,7 +21,7 @@ MonoBehaviour:
   HandRotation: {x: -0.47220993, y: 0.44677368, z: 0.52216965, w: -0.55204177}
   hitMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1153
   firerate: 0.45
   bulletsPerShot: 1
   shootSpread: {x: 0.03, y: 0, z: 0}
